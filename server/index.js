@@ -25,25 +25,25 @@ app.use((err, req, res, next) => {
 
 app.get("/", async (req, res) => {
   res.status(200).json({
-    message: "Hello developers from GFG",
+    message: "Welcome to FitnessTracker",
   });
 });
-
 const connectDB = () => {
   mongoose.set("strictQuery", true);
   mongoose
-    .connect(process.env.MONGODB_URL)
-    .then(() => console.log("Connected to Mongo DB"))
+    .connect("mongodb://localhost:27017/FitnessTracker")
+    .then(() => console.log("Connected to MongoDB"))
     .catch((err) => {
-      console.error("failed to connect with mongo");
+      console.error("Failed to connect with MongoDB");
       console.error(err);
     });
 };
 
+
 const startServer = async () => {
   try {
     connectDB();
-    app.listen(8080, () => console.log("Server started on port 8080"));
+    app.listen(4000, () => console.log("Server started on port 8080"));
   } catch (error) {
     console.log(error);
   }
